@@ -15,3 +15,5 @@ def get_user(token):
     })
   # Return the JSON result
   return user.json()
+
+  

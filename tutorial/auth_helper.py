@@ -13,7 +13,6 @@ def load_cache(request):
   cache = msal.SerializableTokenCache()
   if request.session.get('token_cache'):
     cache.deserialize(request.session['token_cache'])
-
   return cache
 
 def save_cache(request, cache):
@@ -34,7 +33,6 @@ def get_msal_app(cache=None):
 # Method to generate a sign-in flow
 def get_sign_in_flow():
   auth_app = get_msal_app()
-
   return auth_app.initiate_auth_code_flow(
     settings['scopes'],
     redirect_uri=settings['redirect'])
@@ -73,20 +71,16 @@ def store_user(request, user):
 def get_token(request):
   cache = load_cache(request)
   auth_app = get_msal_app(cache)
-
   accounts = auth_app.get_accounts()
   if accounts:
     result = auth_app.acquire_token_silent(
       settings['scopes'],
       account=accounts[0])
-
     save_cache(request, cache)
-
     return result['access_token']
 
 def remove_user_and_token(request):
   if 'token_cache' in request.session:
     del request.session['token_cache']
-
   if 'user' in request.session:
     del request.session['user']

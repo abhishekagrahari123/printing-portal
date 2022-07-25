@@ -26,7 +26,6 @@ urlpatterns = [
     path('printing_portal/callback', auth_views.callback, name='callback'),
     path('printing_portal/admin/', admin.site.urls),
     path('printing_portal/place_order/',include('task.urls')),
-    
 ]
 
 if settings.DEBUG:

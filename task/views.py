@@ -39,13 +39,14 @@ def place_order(request):
             shops = shopkeepers.shops
             customer_name = request.session['user']['name']
             customer_email = request.session['user']['email']
-
             files = request.FILES.getlist('docfile')
             
+            #checking total no of uploaded files
             if len(files) > 5:
                 messages.warning(request,f'Please upload at most 5 PDFs.')
                 return HttpResponseRedirect(reverse('place_order'))
 
+            # checking file size and extension
             limit = 10*1024*1024
             for file in files :
                 if file.size > limit:
@@ -55,6 +56,7 @@ def place_order(request):
                     messages.warning(request,f'Uploading non PDF file is not allowed')
                     return HttpResponseRedirect(reverse('place_order'))  
 
+            # getting shop location
             shop_email = form.cleaned_data.get('shopkeeper_email')
             for key in shops:
                 if key == shop_email:
@@ -95,6 +97,7 @@ def place_order(request):
                 cost = num_pages*price_color
             cost = cost*no_of_copies
 
+            #creating new order
             neworder = Order(
                 customer_name = customer_name, 
                 customer_email = customer_email, 
@@ -146,12 +149,6 @@ def success(request):
         messages.success(request,f'Your order has been placed.')
     return render(request, 'task/success.html')
 
-#class based function expect views of the following naming convertion:
-# <app>/<model>_<viewtype>.html
-
-# but for update it expects name to be <app>/<model>_form.html 
-# because it shares the template with create view
-
 def download(request, path):
     file_path = path
     os.chdir(settings.MEDIA_ROOT)
@@ -178,7 +175,7 @@ def validator(request,path):
             data = form.cleaned_data
             otp = data['otp']
             transaction = Order.objects.get(payment_id = path)
-            tras = Order.objects.filter(payment_id=path)
+            # tras = Order.objects.filter(payment_id=path)
             if transaction.otp == otp:
                 transaction.collected_status=True
                 transaction.save()

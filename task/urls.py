@@ -15,3 +15,5 @@ urlpatterns = [
     url(r'^change/(?P<path>.*)$',views.status_change,name = 'change'),
     url(r'^valid/(?P<path>.*)$',views.validator,name = 'valid'),
 ]
+
+
