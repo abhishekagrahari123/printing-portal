@@ -1,5 +1,5 @@
 app_id: 7c214080-8ada-4d78-a056-bee56cae2a3b
-app_secret: VgE_yQ~g.euc11si5bTx8POiGR.n_AhCK3
+app_secret: n5w8Q~O1DXWYj9xRY_zP4pAPYsQnNo4t8niMkdBF
 redirect: "http://localhost:8000/printing_portal/callback"
 scopes:
   - user.read
