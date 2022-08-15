@@ -67,27 +67,27 @@ def place_order(request):
             otp = random.randint(1000,10000)
 
             #creating extra pdf having name and email
-            os.chdir(settings.MEDIA_ROOT)
-            fileName = 'customer_detail.pdf'
-            pdf = canvas.Canvas(fileName)
-            pdf.setFont("Courier-Bold", 36)
-            pdf.drawCentredString(300, 590, customer_name)
-            pdf.setFont("Courier-Bold", 24)
-            pdf.drawCentredString(290,500, customer_email)
-            pdf.save()
+            # os.chdir(settings.MEDIA_ROOT)
+            # fileName = 'customer_detail.pdf'
+            # pdf = canvas.Canvas(fileName)
+            # pdf.setFont("Courier-Bold", 36)
+            # pdf.drawCentredString(300, 590, customer_name)
+            # pdf.setFont("Courier-Bold", 24)
+            # pdf.drawCentredString(290,500, customer_email)
+            # pdf.save()
 
             # pdf merging
-            merger = PdfFileMerger()
-            for file in files:
-                merger.append(file)
-            merger.append(fileName)
+            # merger = PdfFileMerger()
+            # for file in files:
+            #     merger.append(file)
+            # merger.append(fileName)
             
             all_entries = Order.objects.filter(customer_email = customer_email)
             newfile_name = customer_email + '-' + str(len(all_entries)) + '.pdf'
-            num_pages = len(merger.pages)
-            merger.write(newfile_name)
-            merger.close()
-
+            # num_pages = len(merger.pages)
+            # merger.write(newfile_name)
+            # merger.close()
+            num_pages = 5
             #calculating cost
             price_black_and_white = 1
             price_color = 5
