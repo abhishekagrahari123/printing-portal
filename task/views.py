@@ -18,6 +18,8 @@ from reportlab.pdfbase import pdfmetrics
 import os
 import json
 from . import shopkeepers 
+import boto3
+
 
 def customer(request):
     email = request.session['user']['email']
@@ -76,18 +78,7 @@ def place_order(request):
             # pdf.drawCentredString(290,500, customer_email)
             # pdf.save()
 
-            # pdf merging
-            merger = PdfFileMerger()
-            for file in files:
-                merger.append(file)
-
-            all_entries = Order.objects.filter(customer_email = customer_email)
-            newfile_name = customer_name + str(len(all_entries)) + '.pdf'
-            # num_pages = len(merger.pages)
-            merger.write(newfile_name)
-            merger.close()
             num_pages = 5
-            #calculating cost
             price_black_and_white = 1
             price_color = 5
             if black_and_white:
@@ -103,7 +94,7 @@ def place_order(request):
                 otp = otp, 
                 shopkeeper_email = shop_email,
                 shopkeeper_location = shop_location,
-                docfile = newfile_name,  
+                docfile = files[0],  
                 no_of_copies = no_of_copies, 
                 black_and_white=black_and_white, 
                 cost = cost
