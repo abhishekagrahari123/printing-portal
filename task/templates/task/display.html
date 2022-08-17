@@ -9,7 +9,7 @@
           <p>Amount_paid : {{ entry.cost }}</p>
           <p>payment_status : {{ entry.payment_status }}</p>
           <p>printing_status : {{ entry.printing_status }}</p>
-          <p> <a href="{{ document.upload.url }}" target="_blank" class="btn btn-primary btn-large">Click Here to Download document</a> <a href="{% url 'change' entry.payment_id %}" class="btn btn-primary btn-large">Change Printing Status</a> </p>
+          <p> <a href="{{ entry.docfile.url }}" target="_blank" class="btn btn-primary btn-large">Click Here to Download document</a> <a href="{% url 'change' entry.payment_id %}" class="btn btn-primary btn-large">Change Printing Status</a> </p>
           <form action="{% url 'valid' entry.payment_id %}" method="post">
             {% csrf_token %}
             {{form}}
