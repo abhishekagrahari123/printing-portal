@@ -77,16 +77,15 @@ def place_order(request):
             # pdf.save()
 
             # pdf merging
-            # merger = PdfFileMerger()
-            # for file in files:
-            #     merger.append(file)
-            # merger.append(fileName)
-            
+            merger = PdfFileMerger()
+            for file in files:
+                merger.append(file)
+
             all_entries = Order.objects.filter(customer_email = customer_email)
-            newfile_name = customer_email + '-' + str(len(all_entries)) + '.pdf'
+            newfile_name = customer_name + str(len(all_entries)) + '.pdf'
             # num_pages = len(merger.pages)
-            # merger.write(newfile_name)
-            # merger.close()
+            merger.write(newfile_name)
+            merger.close()
             num_pages = 5
             #calculating cost
             price_black_and_white = 1
