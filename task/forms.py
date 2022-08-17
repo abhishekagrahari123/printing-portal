@@ -12,11 +12,12 @@ shop_CHOICES = [(k, v) for k, v in shopkeepers.shops.items()]
 
 class PlaceOrderForm(forms.Form):
     docfile = forms.FileField( 
-        label='Select files', 
+        label='Select a file', 
         help_text='Allowed size per pdf: 10 MB',
         widget=forms.ClearableFileInput(attrs={'multiple': True})
     )
     no_of_copies = forms.IntegerField()
+    no_of_pages = forms.IntegerField()
     black_and_white = forms.ChoiceField(
         choices = TRUE_FALSE_CHOICES, 
         label="Print Type", 

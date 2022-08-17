@@ -68,17 +68,7 @@ def place_order(request):
             black_and_white = form.cleaned_data.get('black_and_white')
             otp = random.randint(1000,10000)
 
-            #creating extra pdf having name and email
-            # os.chdir(settings.MEDIA_ROOT)
-            # fileName = 'customer_detail.pdf'
-            # pdf = canvas.Canvas(fileName)
-            # pdf.setFont("Courier-Bold", 36)
-            # pdf.drawCentredString(300, 590, customer_name)
-            # pdf.setFont("Courier-Bold", 24)
-            # pdf.drawCentredString(290,500, customer_email)
-            # pdf.save()
-
-            num_pages = 5
+            num_pages = form.cleaned_data.get('no_of_pages')
             price_black_and_white = 1
             price_color = 5
             if black_and_white:
