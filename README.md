@@ -1,6 +1,6 @@
 # Printing-portal
 A printing portal website developed using Django Framework,where user can upload his/her document to be printed and can pay respective amount using integrated epayment gateway.
-The website includes seperate login system for general users and shopkeeper authenticated with microsoft auth.
+The website includes seperate login system for general users and shopkeeper authenticated with microsoft auth. Visit the website at [Printing Portal](https://printing-portal.herokuapp.com/printing_portal/).
 
 ## Installation
 python and django need to be installed

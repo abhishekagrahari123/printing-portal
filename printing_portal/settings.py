@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from distutils.debug import DEBUG
 import os
 from pathlib import Path
 import django_heroku
@@ -26,7 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == "True")
+# DEBUG = (os.environ.get('DEBUG_VALUE') == "True")
+DEBUG = True
 CRISPY_FAIL_SILENTLY = not DEBUG 
 ALLOWED_HOSTS = ['printing-portal.herokuapp.com']
 
